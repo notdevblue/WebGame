@@ -72,6 +72,16 @@ let eey = 50;
 let eeWidth = 100;
 let eeHeight = 100;
 
+let img = new Image();
+img.src = "/Han.jpg";
+
+let enemyList = [
+    { x: 50, y: 60, w: 30, h: 60 },
+    { x: 50, y: 60, w: 30, h: 60 },
+    { x: 50, y: 60, w: 30, h: 60 },
+    { x: 50, y: 60, w: 30, h: 60 }
+];
+
 function update() {
 
     {// if (up) {
@@ -119,26 +129,28 @@ function update() {
 
 
 
-    if ((x > eex - width) && (x < eex + eWidth) && (y > eey - height) && (y < eey + eHeight)) {
-        // x = tempx;
-        // y = tempy;
-        x = 0;
-        y = 0;
-    }
+    // if ((x > eex - width) && (x < eex + eWidth) && (y > eey - height) && (y < eey + eHeight)) {
+    //     // x = tempx;
+    //     // y = tempy;
+    //     x = 0;
+    //     y = 0;
+    // }
     if ((x > ex - width) && (x < ex + eWidth) && (y > ey - height) && (y < ey + eHeight)) {
         // x = tempx;
         // y = tempy;
-        x = 0;
-        y = 0;
+        if (ex < x + width) {
+            x = ex - width;
+        }
+        if (ex > x - eWidth)
+            x = ex + eWidth;
     }
 
 
-
-    // if (!((y >= ey - height) && (y <= ey + eHeight) && (x >= ex - width) && (x <= ex + eWidth))) {
-
-
+    // if ((y > ey - height) && (y < ey + eHeight) && (x > ex - width) && (x < ex + eWidth)) {
+    //     // x = tempx;
+    //     // y = tempy;
+    //     y = 0;
     // }
-
 
     // if ((x >= ex - width) && (x <=  ex + eWidth)) {
     //     if ((y >= ey - height)) {
@@ -172,8 +184,8 @@ function update() {
 
 function render() {
     ctx.clearRect(0, 0, 960, 480);
-    ctx.fillStyle = "rgba(0,0,0,1)";
-    ctx.fillRect(x, y, width, height);
+    ctx.drawImage(img, x, y, width, height);
+
     ctx.fillStyle = "rgba(255,0,0,1)";
     ctx.fillRect(ex, ey, eWidth, eHeight);
 
