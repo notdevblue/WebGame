@@ -1,0 +1,8 @@
+#myGame {
+    border: 10px solid #555;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
