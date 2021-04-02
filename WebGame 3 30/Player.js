@@ -8,9 +8,12 @@ class Player {
         this.w = 20;
         this.h = 20;
 
-        this.targetX = x;
-        this.targetY = y;
+        this.targetX = this.x;
+        this.targetY = this.y;
 
+        this.vector = 1;
+        this.distanceX = this.targetX - this.x;
+        this.distanceY = this.targetY - this.y;
     }
 
     setTarget(x, y) {
@@ -19,16 +22,19 @@ class Player {
     }
 
     update(d) {
+        console.log(this.targetX)
+
+        this.distanceX = this.targetX - this.x;
+        this.distanceY = this.targetY - this.y;
+        this.vector = Math.sqrt(Math.pow(this.distanceX, 2) + Math.pow(this.distanceY, 2));
+
+        this.x += this.vector / this.distanceX;
+        this.y += this.vector / this.distanceY;
+
+
         // 순간이동 안 하게 해 보세요 (숙제)
-        this.x = this.targetX;
-        this.y = this.targetY;
-        // this.x += this.speed * d;
-        // if (this.x >= 600 - this.w || this.x <= 0) {
-        //     this.speed *= -1;
-        // }
-
-
-
+        // this.x = this.targetX;
+        // this.y = this.targetY;
     }
 
     render(ctx) {
