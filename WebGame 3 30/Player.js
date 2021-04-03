@@ -1,6 +1,6 @@
 class Player {
     constructor(x, y) {
-        this.speed = 120;
+        this.speed = 0.2;
         this.sprite = new Image();
         this.sprite.src = "/mario.png";
         this.x = x;
@@ -11,7 +11,6 @@ class Player {
         this.targetX = this.x;
         this.targetY = this.y;
 
-        this.vector = 1;
         this.distanceX = this.targetX - this.x;
         this.distanceY = this.targetY - this.y;
     }
@@ -22,14 +21,12 @@ class Player {
     }
 
     update(d) {
-        console.log(this.targetX)
 
         this.distanceX = this.targetX - this.x;
         this.distanceY = this.targetY - this.y;
-        this.vector = Math.sqrt(Math.pow(this.distanceX, 2) + Math.pow(this.distanceY, 2));
 
-        this.x += this.vector / this.distanceX;
-        this.y += this.vector / this.distanceY;
+        this.x += this.distanceX * this.speed;
+        this.y += this.distanceY * this.speed;
 
 
         // 순간이동 안 하게 해 보세요 (숙제)
